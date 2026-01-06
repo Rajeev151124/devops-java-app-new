@@ -11,30 +11,22 @@
     <packaging>jar</packaging>
 
     <name>DevOps Java Web App</name>
+    <description>Spring Boot Web Application for DevOps Practice</description>
 
+    <!-- SINGLE properties block -->
     <properties>
+        <!-- Java version -->
         <java.version>11</java.version>
+
+        <!-- Spring Boot version -->
         <spring.boot.version>2.7.18</spring.boot.version>
+
+        <!-- Maven compiler fix (Java 5 error fix) -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <dependencies>
-        <!-- Spring Boot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!-- Spring Boot Plugin -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
+    <!-- Spring Boot dependency management -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -46,5 +38,37 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <!-- Application dependencies -->
+    <dependencies>
+        <!-- Spring Boot Web (Embedded Tomcat) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- Build configuration -->
+    <build>
+        <plugins>
+            <!-- Spring Boot executable JAR plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Main class -->
+                    <mainClass>com.devops.app.App</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- This makes the JAR runnable -->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
